@@ -1,5 +1,6 @@
 (ns cljs-websocket-coreasync-simple.core-test
   (:require [cljs.test :refer-macros [use-fixtures async deftest is testing run-tests]]
+            [cljs.core.async :refer [<! >! chan]]
             [cljs-websocket-coreasync-simple.core :refer [init-websocket!]]))
 
 (use-fixtures :once 
