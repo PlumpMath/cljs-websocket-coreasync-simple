@@ -1,7 +1,15 @@
 (ns cljs-websocket-coreasync-simple.core-test
-  (:require [clojure.test :refer :all]
-            [cljs-websocket-coreasync-simple.core :refer :all]))
+  (:require [cljs.test :refer-macros [use-fixtures async deftest is testing run-tests]]
+            [cljs-websocket-coreasync-simple.core :refer [init-websocket!]]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(use-fixtures :once 
+  {:before (fn [] (println "before"))
+   :after  (fn [] (println "after"))})
+
+(deftest init-websocket!-test
+  (let [ws-url "ws://localhost:8061"
+        send-chan (chan)
+        recv-chan (chan)]
+    (init-websocket! ws-url send-chan recv-chan)))
+
+(run-tests)
