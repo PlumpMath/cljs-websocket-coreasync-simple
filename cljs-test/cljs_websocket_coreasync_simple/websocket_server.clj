@@ -4,6 +4,8 @@
 
 (defn websocket-handler [req]
   (with-channel req channel
-    (on-receive channel (fn [data] (send! channel data)))))
+    (on-receive channel (fn [data]
+                          (println data)
+                          (send! channel data)))))
 
-(run-server websocket-handler {:port 8061})
+(defn runserver [] (run-server websocket-handler {:port 8062}))
